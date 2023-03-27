@@ -1,5 +1,6 @@
 const AboutModel = require("../../models/about");
 const cloudinary = require("cloudinary").v2;
+
 class AboutController {
   static aboutDisplay = async (req, res) => {
     try {
@@ -13,8 +14,6 @@ class AboutController {
       console.log(error);
     }
   };
-
-  
 
   static aboutEdit = async (req, res) => {
     try {
