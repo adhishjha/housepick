@@ -1,5 +1,7 @@
 const SliderModel = require("../models/slider");
 const PropertyModel = require("../models/property");
+const AboutModel = require('../models/about')
+const BlogModel = require('../models/blog')
 
 class FrontController {
   static home = async (req, res) => {
@@ -11,8 +13,13 @@ class FrontController {
     }
   };
 
-  static about = (req, res) => {
-    res.render("about");
+  static about = async (req, res) => {
+    try{
+      const aboutdata = await AboutModel.findOne()
+      res.render("about",{item: aboutdata});
+    }catch(error){
+      console.log(error);
+    }
   };
 
   static property = async (req, res) => {
@@ -24,8 +31,22 @@ class FrontController {
     }
   };
 
-  static blog = (req, res) => {
-    res.render("blog");
+  static blog = async (req, res) => {
+    try {
+      const result = await BlogModel.find().sort({ _id: -1 });
+      res.render("blog", { r: result });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  static blogDetail = async (req, res) => {
+    try {
+      const result = await BlogModel.findById(req.params.id)
+      res.render("blog-detail", { item: result });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   static contact = (req, res) => {
@@ -50,9 +71,7 @@ class FrontController {
     }
   };
 
-  static blogDetail = (req, res) => {
-    res.render("blog-detail");
-  };
+  
 
   static agentDetail = (req, res) => {
     res.render("agent-detail");

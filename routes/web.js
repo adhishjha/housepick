@@ -1,5 +1,7 @@
 const express = require('express')
+const AboutController = require('../controllers/admin/AboutController')
 const AdminController = require('../controllers/admin/AdminController')
+const BlogController = require('../controllers/admin/BlogController')
 const PropertyController = require('../controllers/admin/PropertyController')
 const SliderController = require('../controllers/admin/SliderController')
 const FrontController = require('../controllers/FrontController')
@@ -15,7 +17,7 @@ router.get('/blog',FrontController.blog)
 router.get('/contact',FrontController.contact)
 router.get('/property-detail/:id',FrontController.propertyDetail)
 router.get('/sliderproperty-detail/:id',FrontController.sliderPropertyDetail)
-router.get('/blog-detail',FrontController.blogDetail)
+router.get('/blog-detail/:id',FrontController.blogDetail)
 router.get('/agent-detail',FrontController.agentDetail)
 router.get('/login',FrontController.login)
 router.get('/register',FrontController.register)
@@ -45,6 +47,23 @@ router.get('/admin/dashboard/propertyedit/:id',PropertyController.propertyEdit)
 router.get('/propertydelete/:id',PropertyController.propertyDelete)
 router.post('/propertyupdate/:id',PropertyController.propertyUpdate)
 router.get('/singleimagedelete/:id/front-image/:public_id',PropertyController.singleImageDelete)
+
+
+
+//about controller
+router.get('/admin/dashboard/about',AboutController.aboutDisplay)
+router.get('/admin/dashboard/aboutedit/:id',AboutController.aboutEdit)
+router.post('/aboutupdate/:id',AboutController.aboutUpdate)
+
+
+//blog controller
+router.get('/admin/dashboard/blog',BlogController.blogDisplay)
+router.post('/bloginsert',BlogController.blogInsert)
+router.get('/admin/dashboard/blogview/:id',BlogController.blogView)
+router.get('/admin/dashboard/blogedit/:id',BlogController.blogEdit)
+router.post('/blogupdate/:id',BlogController.blogUpdate)
+router.get('/blogdelete/:id',BlogController.blogDelete)
+
 
 
 // usercontroller 
