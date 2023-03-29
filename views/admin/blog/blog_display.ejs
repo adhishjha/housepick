@@ -10,7 +10,16 @@
   <div class="animated fadeIn">
       <div class="row">
           <div class="col-md-12">
-            message
+            <% if(message.length>0){ %>
+              <div class="alert alert-success">
+                <%= message %>
+              </div>
+            <% } %>
+            <% if(message1.length>0){ %>
+              <div class="alert alert-danger">
+                <%= message1 %>
+              </div>
+            <% } %>
               <div class="card">
                   <div class="card-header d-flex justify-content-between">
                       <div>
@@ -43,9 +52,9 @@
                                     </td>
                                     <td><%= item.title %></td>
                                     <td><%= item.description.slice(0,150) %></td>
-                                    <td>
-                                      <a href="/admin/dashboard/blogview/<%= item._id %>" class="btn btn-primary">View</a>
-                                      <a href="/admin/dashboard/blogedit/<%= item._id %>" class="btn btn-warning">Edit</a>
+                                    <td class="d-flex flex-column">
+                                      <a href="/admin/dashboard/blogview/<%= item._id %>" class="btn btn-primary mb-2">View</a>
+                                      <a href="/admin/dashboard/blogedit/<%= item._id %>" class="btn btn-warning mb-2">Edit</a>
                                       <a href="/blogdelete/<%= item._id %>" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
@@ -98,4 +107,3 @@
       
 
 <%- include('../admin-footer') %>
-

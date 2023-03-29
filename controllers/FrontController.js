@@ -2,12 +2,16 @@ const SliderModel = require("../models/slider");
 const PropertyModel = require("../models/property");
 const AboutModel = require('../models/about')
 const BlogModel = require('../models/blog')
+const TeamModel = require('../models/team')
 
 class FrontController {
   static home = async (req, res) => {
     try {
+      const blog = await BlogModel.find().sort({_id: -1}).limit(4)
+      const property = await PropertyModel.find().sort({_id: -1}).limit(4)
       const sliders = await SliderModel.find().sort({ _id: -1 });
-      res.render("index", { sliders: sliders });
+      const team = await TeamModel.find().sort({_id:-1}).limit(3)
+      res.render("index", { sliders: sliders, property:property, blog:blog, team: team });
     } catch (error) {
       console.log(error);
     }
@@ -16,7 +20,8 @@ class FrontController {
   static about = async (req, res) => {
     try{
       const aboutdata = await AboutModel.findOne()
-      res.render("about",{item: aboutdata});
+      const team = await TeamModel.find().sort({_id:-1})
+      res.render("about",{item: aboutdata, team:team});
     }catch(error){
       console.log(error);
     }
@@ -49,8 +54,12 @@ class FrontController {
     }
   };
 
-  static contact = (req, res) => {
-    res.render("contact");
+  static contact = async (req, res) => {
+    try{
+      res.render("contact",{message:req.flash('success'), message1: req.flash('error')});
+    }catch(error){
+      console.log(error)
+    }
   };
 
   static propertyDetail = async (req, res) => {
@@ -73,8 +82,13 @@ class FrontController {
 
   
 
-  static agentDetail = (req, res) => {
-    res.render("agent-detail");
+  static teamDetail = async (req, res) => {
+    try{
+      const data = await TeamModel.findById(req.params.id)
+      res.render("team-detail",{item: data});
+    }catch(error){
+      console.log(error);
+    }
   };
 
   static login = (req, res) => {

@@ -2,8 +2,10 @@ const express = require('express')
 const AboutController = require('../controllers/admin/AboutController')
 const AdminController = require('../controllers/admin/AdminController')
 const BlogController = require('../controllers/admin/BlogController')
+const ContactController = require('../controllers/admin/ContactController')
 const PropertyController = require('../controllers/admin/PropertyController')
 const SliderController = require('../controllers/admin/SliderController')
+const TeamController = require('../controllers/admin/TeamController')
 const FrontController = require('../controllers/FrontController')
 const UserController = require('../controllers/user/UserController')
 const router = express.Router()
@@ -18,7 +20,7 @@ router.get('/contact',FrontController.contact)
 router.get('/property-detail/:id',FrontController.propertyDetail)
 router.get('/sliderproperty-detail/:id',FrontController.sliderPropertyDetail)
 router.get('/blog-detail/:id',FrontController.blogDetail)
-router.get('/agent-detail',FrontController.agentDetail)
+router.get('/team-detail/:id',FrontController.teamDetail)
 router.get('/login',FrontController.login)
 router.get('/register',FrontController.register)
 
@@ -64,6 +66,20 @@ router.get('/admin/dashboard/blogedit/:id',BlogController.blogEdit)
 router.post('/blogupdate/:id',BlogController.blogUpdate)
 router.get('/blogdelete/:id',BlogController.blogDelete)
 
+
+//contact controller
+router.get('/admin/dashboard/contacts',ContactController.contactDisplay)
+router.post('/contactinsert',ContactController.contactInsert)
+router.get('/contactdelete/:id',ContactController.contactDelete)
+
+
+
+//team controller
+router.get('/admin/dashboard/team',TeamController.teamDisplay)
+router.post('/teaminsert',TeamController.teamInsert)
+router.get('/admin/dashboard/teamedit/:id',TeamController.teamEdit)
+router.post('/teamupdate/:id',TeamController.teamUpdate)
+router.get('/teamdelete/:id',TeamController.teamDelete)
 
 
 // usercontroller 

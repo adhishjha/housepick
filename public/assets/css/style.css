@@ -2099,7 +2099,7 @@ a:hover {
   animation: animate-loading 1s linear infinite;
 }
 
-.php-email-form label {
+.node-email-form label {
   color: #000000;
   position: relative;
 }
@@ -2108,17 +2108,17 @@ a:hover {
   height: 3.5rem;
 }
 
-.php-email-form .form-control {
+.node-email-form .form-control {
   border-radius: 0;
   font-size: 1.1rem;
   font-weight: 300;
 }
 
-.php-email-form .form-control.form-control-a {
+.node-email-form .form-control.form-control-a {
   height: 3.5rem;
 }
 
-.php-email-form .form-control:focus {
+.node-email-form .form-control:focus {
   box-shadow: none;
   border-color: #2eca6a;
 }
